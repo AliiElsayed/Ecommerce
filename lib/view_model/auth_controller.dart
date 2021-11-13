@@ -1,6 +1,6 @@
 import 'package:e_commerce/model/user_model.dart';
 import 'package:e_commerce/service/firestore_user.dart';
-import 'package:e_commerce/view/home_screen.dart';
+import 'package:e_commerce/view/control_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -113,6 +113,6 @@ class AuthController extends GetxController {
       pic: userInfo.user.photoURL,
     );
     await FireStoreUser().addUserToUsersCollection(userModel);
-    Get.offAll(HomeScreen());
+    Get.offAll(ControlView());
   }
 }
