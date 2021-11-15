@@ -13,13 +13,13 @@ class CustomButton extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: kPrimaryColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(5.0),
           ),
         ),
         onPressed: onPress,
@@ -29,6 +29,7 @@ class CustomButton extends StatelessWidget {
             text: btnText,
             fontColor: Colors.white,
             alignment: Alignment.center,
+            size: 18.0,
           ),
         ),
       ),

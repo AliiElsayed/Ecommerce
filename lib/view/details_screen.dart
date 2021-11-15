@@ -31,6 +31,7 @@ class DetailsScreen extends StatelessWidget {
                     CustomText(
                       text: model.name,
                       size: 26.0,
+                      weight: FontWeight.bold,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -56,6 +57,7 @@ class DetailsScreen extends StatelessWidget {
                               CustomText(
                                 text: model.size.toUpperCase(),
                                 size: 16,
+                                weight: FontWeight.bold,
                               ),
                             ],
                           ),
@@ -72,7 +74,7 @@ class DetailsScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               CustomText(
-                                text: 'Color',
+                                text: 'Colour',
                                 size: 16,
                               ),
                               Container(
@@ -94,6 +96,7 @@ class DetailsScreen extends StatelessWidget {
                     CustomText(
                       text: 'Details',
                       size: 26.0,
+                      weight: FontWeight.bold,
                     ),
                     CustomText(
                       text: model.description,
@@ -106,16 +109,28 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal:15.0,vertical:5.0),
+            padding:
+                 EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText(text:'PRICE',fontColor: Colors.grey, size: 22.0,),
-                    SizedBox(height: 5.0,),
-                    CustomText(text:'\$ ' + model.price,size: 20.0,fontColor: kPrimaryColor,),
+                    CustomText(
+                      text: 'PRICE',
+                      fontColor: Colors.grey,
+                      size:15.0,
+                    ),
+                    SizedBox(
+                      height: 5.0,
+                    ),
+                    CustomText(
+                      text: '\$ ' + model.price,
+                      size: 22.0,
+                      fontColor: kPrimaryColor,
+                      weight: FontWeight.bold,
+                    ),
                   ],
                 ),
                 Container(
@@ -123,7 +138,7 @@ class DetailsScreen extends StatelessWidget {
                   height: 60,
                   child: CustomButton(
                     btnText: 'ADD',
-                    onPress: (){},
+                    onPress: () {},
                   ),
                 ),
               ],

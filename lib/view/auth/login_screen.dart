@@ -52,6 +52,7 @@ class LoginScreen extends GetWidget<AuthController> {
                             text: 'Welcome,',
                             fontColor: Colors.black,
                             size: 30.0,
+                            weight: FontWeight.bold,
                           ),
                           GestureDetector(
                             onTap: () {

@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
                         text: 'Categories',
                         alignment: Alignment.bottomLeft,
                         size: 20.0,
+                        weight: FontWeight.bold,
                       ),
                       SizedBox(
                         height: 20.0,
@@ -59,8 +60,8 @@ class HomeScreen extends StatelessWidget {
                                   return Column(
                                     children: [
                                       Container(
-                                        height: 80.0,
-                                        width: 80,
+                                        height: 60.0,
+                                        width: 60,
                                         child: Image.network(
                                           controller.categories[index].image,
                                         ),
@@ -84,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                       CustomText(
                                         text: controller.categories[index].name,
-                                        size: 20.0,
+                                        size: 17.0,
                                       ),
                                     ],
                                   );
@@ -107,6 +108,7 @@ class HomeScreen extends StatelessWidget {
                           CustomText(
                             text: 'Best Selling',
                             size: 20.0,
+                            weight: FontWeight.bold,
                           ),
                           CustomText(
                             text: 'See all',

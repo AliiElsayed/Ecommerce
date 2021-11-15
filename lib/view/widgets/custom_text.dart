@@ -7,6 +7,7 @@ class CustomText extends StatelessWidget {
   final Color fontColor;
   final Alignment alignment;
   final double linesHeight;
+  final FontWeight weight;
 
   CustomText({
     this.text,
@@ -14,6 +15,7 @@ class CustomText extends StatelessWidget {
     this.fontColor,
     this.alignment = Alignment.topLeft,
     this.linesHeight = 1.0,
+    this.weight =FontWeight.w500
   });
 
   @override
@@ -26,6 +28,7 @@ class CustomText extends StatelessWidget {
           height: linesHeight,
           fontSize: size,
           color: fontColor,
+          fontWeight: weight,
         ),
       ),
     );

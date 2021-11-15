@@ -48,8 +48,9 @@ class ControlView extends GetWidget<AuthController> {
                             padding: const EdgeInsets.only(top: 8.0),
                             child: CustomText(
                               text: 'Explore',
-                              size: 16.0,
+                              size: 15.0,
                               alignment: Alignment.topCenter,
+                              weight: FontWeight.bold,
                             ),
                           ),
                           tooltip: 'Explore',
@@ -64,7 +65,8 @@ class ControlView extends GetWidget<AuthController> {
                             padding: const EdgeInsets.only(top: 8.0),
                             child: CustomText(
                               text: 'Cart',
-                              size: 16.0,
+                              size: 15.0,
+                              weight: FontWeight.bold,
                               alignment: Alignment.topCenter,
                             ),
                           ),
@@ -80,7 +82,8 @@ class ControlView extends GetWidget<AuthController> {
                             padding: const EdgeInsets.only(top: 8.0),
                             child: CustomText(
                               text: 'Profile',
-                              size: 16.0,
+                              size: 15.0,
+                              weight: FontWeight.bold,
                               alignment: Alignment.topCenter,
                             ),
                           ),

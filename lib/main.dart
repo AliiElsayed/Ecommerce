@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
       home:ControlView(),
       initialBinding: Binding(),
       theme: ThemeData(
-        fontFamily: 'Source Sans Pro'
+        fontFamily: 'Source Sans Pro',
+
       ),
     );
   }
