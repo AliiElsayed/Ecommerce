@@ -102,7 +102,7 @@ class RegisterScreen extends GetWidget<AuthController> {
                       SizedBox(
                         height: 50.0,
                       ),
-                      CustomAuthButton(
+                      CustomButton(
                         btnText: 'Sign UP',
                         onPress: () {
                           _formKey.currentState.save();

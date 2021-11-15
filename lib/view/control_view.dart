@@ -49,6 +49,7 @@ class ControlView extends GetWidget<AuthController> {
                             child: CustomText(
                               text: 'Explore',
                               size: 16.0,
+                              alignment: Alignment.topCenter,
                             ),
                           ),
                           tooltip: 'Explore',
@@ -64,6 +65,7 @@ class ControlView extends GetWidget<AuthController> {
                             child: CustomText(
                               text: 'Cart',
                               size: 16.0,
+                              alignment: Alignment.topCenter,
                             ),
                           ),
                           tooltip: 'Cart',
@@ -79,6 +81,7 @@ class ControlView extends GetWidget<AuthController> {
                             child: CustomText(
                               text: 'Profile',
                               size: 16.0,
+                              alignment: Alignment.topCenter,
                             ),
                           ),
                           tooltip: 'Profile',

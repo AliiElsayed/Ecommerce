@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'custom_text.dart';
 
-class CustomAuthButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final String btnText;
   final Function onPress;
 
-  CustomAuthButton({this.btnText, this.onPress});
+  CustomButton({this.btnText, this.onPress});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,6 +28,7 @@ class CustomAuthButton extends StatelessWidget {
           child: CustomText(
             text: btnText,
             fontColor: Colors.white,
+            alignment: Alignment.center,
           ),
         ),
       ),

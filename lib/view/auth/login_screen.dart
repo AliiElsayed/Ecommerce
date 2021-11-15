@@ -116,7 +116,7 @@ class LoginScreen extends GetWidget<AuthController> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      CustomAuthButton(
+                      CustomButton(
                         btnText: 'Sign In',
                         onPress: () {
                           _formKey.currentState.save();
