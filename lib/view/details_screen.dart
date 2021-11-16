@@ -1,8 +1,11 @@
 import 'package:e_commerce/constants.dart';
+import 'package:e_commerce/model/cart_product_model.dart';
 import 'package:e_commerce/model/product_model.dart';
 import 'package:e_commerce/view/widgets/custom_auth_button.dart';
 import 'package:e_commerce/view/widgets/custom_text.dart';
+import 'package:e_commerce/view_model/cart_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DetailsScreen extends StatelessWidget {
   final ProductModel model;
@@ -109,8 +112,7 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding:
-                 EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -120,7 +122,7 @@ class DetailsScreen extends StatelessWidget {
                     CustomText(
                       text: 'PRICE',
                       fontColor: Colors.grey,
-                      size:15.0,
+                      size: 15.0,
                     ),
                     SizedBox(
                       height: 5.0,
@@ -133,12 +135,21 @@ class DetailsScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                  width: 160.0,
-                  height: 60,
-                  child: CustomButton(
-                    btnText: 'ADD',
-                    onPress: () {},
+                GetBuilder<CartController>(
+                  init: CartController(),
+                  builder: (controller) => Container(
+                    width: 160.0,
+                    height: 60,
+                    child: CustomButton(
+                      btnText: 'ADD',
+                      onPress: (){
+                        controller.addToCart(CartProductModel(
+                            name : model.name,
+                            image : model.image,
+                            price : model.price,
+                            quantity : 1 ));
+                      }
+                    ),
                   ),
                 ),
               ],
