@@ -1,5 +1,6 @@
 import 'package:e_commerce/model/user_model.dart';
 import 'package:e_commerce/service/firestore_user.dart';
+import 'package:e_commerce/service/local_storage_controller.dart';
 import 'package:e_commerce/view/control_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class AuthController extends GetxController {
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   FirebaseAuth _auth = FirebaseAuth.instance;
   FacebookLogin _facebookLogin = FacebookLogin();
+  LocalStorageController localStorageController = LocalStorageController();
 
   Rx<User> _user = Rx<User>();
   String get user => _user.value?.email;
@@ -44,7 +46,7 @@ class AuthController extends GetxController {
       idToken: googleAuthentication.idToken,
       accessToken: googleAuthentication.accessToken,
     );
-    await _auth.signInWithCredential(credential).then((userInfo) async{
+    await _auth.signInWithCredential(credential).then((userInfo) async {
       await saveUser(userInfo);
     });
 
@@ -57,7 +59,7 @@ class AuthController extends GetxController {
     if (result.status == FacebookLoginStatus.loggedIn) {
       OAuthCredential faceCredential =
           FacebookAuthProvider.credential(accessToken);
-      await _auth.signInWithCredential(faceCredential).then((userInfo) async{
+      await _auth.signInWithCredential(faceCredential).then((userInfo) async {
         await saveUser(userInfo);
       });
     }
@@ -69,7 +71,11 @@ class AuthController extends GetxController {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((userInfo) async {
-        await saveUser(userInfo);
+        await FireStoreUser()
+            .getCurrentUserDataFromCollection(userInfo.user.uid)
+            .then((value) {
+          storeUserDataLocally(UserModel.fromJson(value.data()));
+        });
       });
     } catch (e) {
       Get.snackbar(
@@ -82,10 +88,7 @@ class AuthController extends GetxController {
     update();
   }
 
-  void logOut() async {
-    await _auth.signOut();
-    update();
-  }
+
 
   void signUpWithEmailPassword() async {
     try {
@@ -108,11 +111,18 @@ class AuthController extends GetxController {
   Future saveUser(UserCredential userInfo) async {
     UserModel userModel = UserModel(
       userId: userInfo.user.uid,
-      name: name== null ?userInfo.user.displayName: name,
+      name: name == null ? userInfo.user.displayName : name,
       email: userInfo.user.email,
       pic: userInfo.user.photoURL,
     );
     await FireStoreUser().addUserToUsersCollection(userModel);
     Get.offAll(ControlView());
+    storeUserDataLocally(userModel);
+    update();
+  }
+
+  storeUserDataLocally(UserModel userData) async {
+    await localStorageController.setUserData(userData);
+    update();
   }
 }

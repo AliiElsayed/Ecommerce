@@ -147,6 +147,7 @@ class DetailsScreen extends StatelessWidget {
                             name : model.name,
                             image : model.image,
                             price : model.price,
+                            productId: model.productId,
                             quantity : 1 ));
                       }
                     ),

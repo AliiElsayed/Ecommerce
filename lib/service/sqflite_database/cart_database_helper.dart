@@ -24,7 +24,8 @@ class CartDatabaseHelper {
             $productName TEXT NOT NULL,
              $productImage TEXT NOT NULL, 
              $productPrice TEXT NOT NULL, 
-             $productQuantity INTEGER NOT NULL )''');
+             $productQuantity INTEGER NOT NULL , 
+             $productId TEXT NOT NULL )''');
         print('table created.......');
       },
     );
@@ -47,5 +48,11 @@ class CartDatabaseHelper {
         : [];
 
     return allCardProducts;
+  }
+
+  update(CartProductModel model) async {
+    var clientDB = await database;
+    await clientDB.update(tableName, model.toJson(),
+        where: ' $productId = ?', whereArgs: ['${model.productId}']);
   }
 }

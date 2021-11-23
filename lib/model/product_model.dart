@@ -2,7 +2,7 @@ import 'package:e_commerce/helper/extension.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProductModel {
-  String name, image, description, size, price, brand;
+  String name, image, description, size, price, brand ,productId;
   Color color;
 
   ProductModel({
@@ -13,6 +13,7 @@ class ProductModel {
     this.color,
     this.price,
     this.brand,
+    this.productId,
   });
 
   ProductModel.fromJson(Map<dynamic, dynamic> products) {
@@ -26,6 +27,7 @@ class ProductModel {
     color = HexColor.fromHex(products['color']);
     price = products['price'];
     brand = products['brand'];
+    productId = products['productId'];
   }
 
   toJson() {
@@ -37,6 +39,7 @@ class ProductModel {
       'color': color,
       'price': price,
       'brand': brand,
+      'productId' :productId
     };
   }
 }
