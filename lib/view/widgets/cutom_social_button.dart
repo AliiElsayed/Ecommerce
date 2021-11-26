@@ -24,7 +24,7 @@ class CustomSocialButton extends StatelessWidget {
             children: [
               Image.asset(imgPath),
               SizedBox(width: 30.0,),
-              Text(btnTitle),
+              Text(btnTitle,style: TextStyle(fontSize: 17.0),),
             ],
           ),
         ),

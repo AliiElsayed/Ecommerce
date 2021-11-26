@@ -1,4 +1,5 @@
 import 'package:e_commerce/constants.dart';
+import 'package:e_commerce/view/checkout/checkout_screen.dart';
 import 'package:e_commerce/view/widgets/custom_auth_button.dart';
 import 'package:e_commerce/view/widgets/custom_text.dart';
 import 'package:e_commerce/view_model/cart_controller.dart';
@@ -162,7 +163,9 @@ class CartScreen extends StatelessWidget {
                               width: 150.0,
                               child: CustomButton(
                                 btnText: 'CHECKOUT',
-                                onPress: () {},
+                                onPress: () {
+                                  Get.to(()=>(CheckOutScreen()));
+                                },
                               ),
                             ),
                           ],
