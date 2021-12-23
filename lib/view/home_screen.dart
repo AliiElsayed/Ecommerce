@@ -52,16 +52,17 @@ class HomeScreen extends StatelessWidget {
                           init: HomeController(),
                           builder: (controller) {
                             return Container(
-                              height: 150.0,
+                              height: 120.0,
                               // padding: EdgeInsets.all(30.0),
                               child: ListView.separated(
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   return Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Container(
                                         height: 60.0,
-                                        width: 60,
+                                        width: 60.0,
                                         child: Image.network(
                                           controller.categories[index].image,
                                         ),

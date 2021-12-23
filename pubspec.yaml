@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
   flutter_svg: ^0.19.3
   status_change: 1.0.0
+  flutter_slidable: 0.5.7
 
 dev_dependencies:
   flutter_test:

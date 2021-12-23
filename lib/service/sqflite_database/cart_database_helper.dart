@@ -41,18 +41,27 @@ class CartDatabaseHelper {
   getAllCartProducts() async {
     var clientDb = await database;
     List<Map> cartProductsList = await clientDb.query(tableName);
-    List<CartProductModel> allCardProducts = cartProductsList.isNotEmpty
+    List<CartProductModel> allCartProducts = cartProductsList.isNotEmpty
         ? cartProductsList
             .map((cartProduct) => CartProductModel.fromJson(cartProduct))
             .toList()
         : [];
 
-    return allCardProducts;
+    return allCartProducts;
   }
 
   update(CartProductModel model) async {
     var clientDB = await database;
     await clientDB.update(tableName, model.toJson(),
         where: ' $productId = ?', whereArgs: ['${model.productId}']);
+  }
+  deleteProduct(String proId) async{
+    var clientDB = await database;
+    await clientDB.delete('$tableName',where: '$productId = ?', whereArgs: [proId] );
+
+  }
+  deleteAllCartProducts() async {
+    var clientDB = await database;
+    await clientDB.rawDelete('DELETE FROM $tableName');
   }
 }

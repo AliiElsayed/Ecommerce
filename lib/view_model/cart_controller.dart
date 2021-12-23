@@ -3,6 +3,8 @@ import 'package:e_commerce/service/sqflite_database/cart_database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../constants.dart';
+
 class CartController extends GetxController {
   CartDatabaseHelper dbHelper = CartDatabaseHelper();
   List<CartProductModel> allCartProducts = [];
@@ -57,5 +59,32 @@ class CartController extends GetxController {
     await dbHelper.update(allCartProducts[productIndex]);
     update();
   }
+
+  clearCart() async{
+    await dbHelper.deleteAllCartProducts();
+    allCartProducts.clear();
+    update();
+  }
+
+  removeProductFromCart( String id) async{
+    await dbHelper.deleteProduct(id);
+    update();
+  }
+
+  onActionPressed(int index , SlidableActions action , String id){
+   switch (action){
+     case SlidableActions.AddToFavorite:
+       allCartProducts.removeAt(index);
+       Get.snackbar('Done !', 'Item added to Favorites',);
+       break;
+     case SlidableActions.Delete:
+       removeProductFromCart(id);
+       allCartProducts.removeAt(index);
+       Get.snackbar( 'Done', 'Item deleted successfully' );
+       break;
+   }
+
+  }
+
 
 }

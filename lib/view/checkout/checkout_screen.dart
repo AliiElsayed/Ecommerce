@@ -14,6 +14,7 @@ class CheckOutScreen extends StatelessWidget {
     return GetBuilder<CheckOutController>(
       init: CheckOutController(),
       builder: (controller) => Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(
@@ -75,7 +76,7 @@ class CheckOutScreen extends StatelessWidget {
                     }
                   },
                   lineWidgetBuilder: (index) {
-                    if (index > 0) {
+                    if (index > 0 ) {
                       if (index == controller.currentIndex) {
                         final prevColor = controller.getColor(index - 1);
                         final color = controller.getColor(index);
@@ -97,7 +98,7 @@ class CheckOutScreen extends StatelessWidget {
                         );
                       }
                     } else {
-                      return null;
+                      return Container();
                     }
                   },
                   itemCount: controller.processes.length,
@@ -116,27 +117,32 @@ class CheckOutScreen extends StatelessWidget {
                           ? AddAddress()
                           : Summary(),
                   Padding(
-                    padding: EdgeInsets.only(left: 10.0 ,top:40.0, right:10.0, bottom:5.0),
+                    padding: EdgeInsets.only(
+                        left: 10.0, top: 40.0, right: 10.0, bottom: 7.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
                           height: 55.0,
                           width: 150.0,
-                          child: controller.currentPage != Pages.DeliveryTime?CustomButton(
-                            btnText: 'BACK',
-                            btnBackgroundColor: Colors.white,
-                            btnTextColor: Colors.black,
-                            onPress: () {
-                            },
-                          ) :  null,
+                          child: controller.currentPage != Pages.DeliveryTime
+                              ? CustomButton(
+                                  btnText: 'BACK',
+                                  btnBackgroundColor: Colors.white,
+                                  btnTextColor: Colors.black,
+                                  onPress: () {
+                                    controller.onBackPressed();
+                                  },
+                                )
+                              : null,
                         ),
                         Container(
                           height: 55.0,
                           width: 150.0,
                           child: CustomButton(
-                            btnText: controller.currentPage == Pages.Summary? 'Deliver'
-                            : 'NEXT',
+                            btnText: controller.currentPage == Pages.Summary
+                                ? 'Deliver'
+                                : 'NEXT',
                             onPress: () {
                               controller.onNextPressed();
                             },
@@ -148,7 +154,6 @@ class CheckOutScreen extends StatelessWidget {
                 ],
               ),
             ),
-
           ],
         ),
       ),
