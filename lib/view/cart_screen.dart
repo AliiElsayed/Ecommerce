@@ -46,7 +46,8 @@ class CartScreen extends StatelessWidget {
                             actions: [
                               IconSlideAction(
                                 icon: Icons.star,
-                                color: Color(0xFFC107),
+                                color: Colors.yellow.shade600,
+                                foregroundColor: Colors.white,
                                 onTap: () {
                                   cartController.onActionPressed(
                                       index,
@@ -59,7 +60,7 @@ class CartScreen extends StatelessWidget {
                             secondaryActions: [
                               IconSlideAction(
                                 icon: Icons.delete_forever_outlined,
-                                color: Color(0xFF3D00),
+                                color: Color.fromRGBO(250, 68, 37, 1.0),
                                 onTap: () {
                                   cartController.onActionPressed(
                                       index,
@@ -69,7 +70,7 @@ class CartScreen extends StatelessWidget {
                                 },
                               ),
                             ],
-                            actionExtentRatio: 0.25,
+                            actionExtentRatio: 0.27,
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.20,
                               child: Row(
