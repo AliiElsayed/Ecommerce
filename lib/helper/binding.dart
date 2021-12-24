@@ -7,7 +7,7 @@ import 'package:e_commerce/view_model/home_controller.dart';
 import 'package:e_commerce/view_model/profile_controller.dart';
 import 'package:get/get.dart';
 
-class Binding extends Bindings{
+class Binding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => AuthController());
@@ -18,5 +18,4 @@ class Binding extends Bindings{
     Get.lazyPut(() => LocalStorageController());
     Get.lazyPut(() => CheckOutController());
   }
-
 }

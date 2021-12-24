@@ -1,5 +1,5 @@
-import 'package:e_commerce/constants.dart';
-import 'package:e_commerce/view/details_screen.dart';
+import 'package:e_commerce/view/category_details.dart';
+import 'package:e_commerce/view/widgets/custom_product_viewer.dart';
 import 'package:e_commerce/view/widgets/custom_text.dart';
 import 'package:e_commerce/view_model/home_controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                         height: 20.0,
                       ),
                       GetBuilder<HomeController>(
-                          init: HomeController(),
+                          init: Get.find(),
                           builder: (controller) {
                             return Container(
                               height: 120.0,
@@ -60,25 +60,33 @@ class HomeScreen extends StatelessWidget {
                                   return Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Container(
-                                        height: 60.0,
-                                        width: 60.0,
-                                        child: Image.network(
-                                          controller.categories[index].image,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(40.0),
-                                          color: Colors.white,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.3),
-                                              spreadRadius: 2,
-                                              blurRadius: 10,
-                                              offset: Offset(4, 8),
-                                            ),
-                                          ],
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.to(CategoryDetails(
+                                            categoryName: controller
+                                                .categories[index].name,
+                                          ));
+                                        },
+                                        child: Container(
+                                          height: 60.0,
+                                          width: 60.0,
+                                          child: Image.network(
+                                            controller.categories[index].image,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(40.0),
+                                            color: Colors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.3),
+                                                spreadRadius: 2,
+                                                blurRadius: 10,
+                                                offset: Offset(4, 8),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       SizedBox(
@@ -126,52 +134,9 @@ class HomeScreen extends StatelessWidget {
                           child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: (){
-                                  Get.to(DetailsScreen(model: productController.products[index],));
-                                },
-                                child: Container(
-                                  height: 300.0,
-                                  width: 175.0,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        child: Image.network(
-                                          productController.products[index].image,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10.0,
-                                      ),
-                                      CustomText(
-                                        text: productController
-                                            .products[index].name,
-                                        size: 18.0,
-                                      ),
-                                      SizedBox(
-                                        height: 7.0,
-                                      ),
-                                      CustomText(
-                                        text: productController
-                                            .products[index].brand,
-                                        //.substring(0,30)+' ....',
-                                        fontColor: Colors.grey,
-                                        size: 16.0,
-                                      ),
-                                      SizedBox(
-                                        height: 7.0,
-                                      ),
-                                      CustomText(
-                                        text:
-                                            '\$ ${productController.products[index].price.toString()} ',
-                                        fontColor: kPrimaryColor,
-                                        size: 18.0,
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                              return CustomProductViewer(
+                                determinedProduct:
+                                    productController.ourAllProducts[index],
                               );
                             },
                             separatorBuilder: (context, index) {
@@ -179,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                                 width: 15.0,
                               );
                             },
-                            itemCount: productController.products.length,
+                            itemCount: productController.ourAllProducts.length,
                           ),
                         );
                       })

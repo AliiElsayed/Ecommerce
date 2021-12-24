@@ -2,7 +2,7 @@ import 'package:e_commerce/helper/extension.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProductModel {
-  String name, image, description, size, price, brand ,productId;
+  String name, image, description, size, price, brand, productId, category;
   Color color;
 
   ProductModel({
@@ -14,6 +14,7 @@ class ProductModel {
     this.price,
     this.brand,
     this.productId,
+    this.category,
   });
 
   ProductModel.fromJson(Map<dynamic, dynamic> products) {
@@ -28,6 +29,7 @@ class ProductModel {
     price = products['price'];
     brand = products['brand'];
     productId = products['productId'];
+    category = products['category'];
   }
 
   toJson() {
@@ -39,7 +41,8 @@ class ProductModel {
       'color': color,
       'price': price,
       'brand': brand,
-      'productId' :productId
+      'productId': productId,
+      'category': category,
     };
   }
 }
