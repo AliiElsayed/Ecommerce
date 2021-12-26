@@ -23,7 +23,7 @@ class LoginScreen extends GetWidget<AuthController> {
       body: SingleChildScrollView(
         child: Padding(
           padding:
-              EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0, bottom: 20.0),
+              EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0, bottom: 20.0),
           child: Column(
             children: [
               Form(
@@ -85,8 +85,12 @@ class LoginScreen extends GetWidget<AuthController> {
                           controller.email = value;
                         },
                         validate: (value) {
-                          if (value == null) {
-                            print('Error');
+                          if (value == '') {
+                            return 'Please enter Email';
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return 'Please Enter a valid Email';
                           }
                         },
                       ),
@@ -96,12 +100,13 @@ class LoginScreen extends GetWidget<AuthController> {
                       CustomTextFormField(
                         titleText: 'Password',
                         hint: '*******',
+                        hidePassword: true,
                         onSave: (value) {
                           controller.password = value;
                         },
                         validate: (value) {
-                          if (value == null) {
-                            print('Error');
+                          if (value == '') {
+                            return 'Please Enter Password ';
                           }
                         },
                       ),

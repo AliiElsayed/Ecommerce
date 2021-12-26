@@ -19,7 +19,6 @@ class CustomProductViewer extends StatelessWidget {
         ));
       },
       child: Container(
-        //color: Colors.red,
         height: 300.0,
         width: 175.0,
         child: Column(

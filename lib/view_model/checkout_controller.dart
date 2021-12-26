@@ -1,4 +1,3 @@
-import 'package:e_commerce/view/cart_screen.dart';
 import 'package:e_commerce/view/control_view.dart';
 import 'package:e_commerce/view_model/cart_controller.dart';
 import 'package:flutter/material.dart';

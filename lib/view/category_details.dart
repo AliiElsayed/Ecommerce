@@ -34,12 +34,12 @@ class CategoryDetails extends StatelessWidget {
         body: Container(
           color: Colors.white,
           child: GridView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+            padding: EdgeInsets.only(top: 12.0,bottom: 10.0, right: 10.0, left: 17.0),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 1.0,
-                mainAxisSpacing: 0.0,
-                childAspectRatio: 0.50),
+              crossAxisCount: 2,
+              crossAxisSpacing: 7,
+              childAspectRatio: 0.50,
+            ),
             itemBuilder: (context, index) {
               return CustomProductViewer(
                 determinedProduct:

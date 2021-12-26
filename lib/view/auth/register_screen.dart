@@ -15,7 +15,7 @@ class RegisterScreen extends GetWidget<AuthController> {
         elevation: 0.0,
         backgroundColor: Colors.white,
         leading: GestureDetector(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: Icon(
@@ -27,7 +27,7 @@ class RegisterScreen extends GetWidget<AuthController> {
       body: SingleChildScrollView(
         child: Padding(
           padding:
-              EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0, bottom: 20.0),
+              EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0, bottom: 20.0),
           child: Column(
             children: [
               Form(
@@ -64,8 +64,8 @@ class RegisterScreen extends GetWidget<AuthController> {
                           controller.name = value;
                         },
                         validate: (value) {
-                          if (value == null) {
-                            print('Error');
+                          if (value == '') {
+                            return 'Please enter name';
                           }
                         },
                       ),
@@ -79,8 +79,12 @@ class RegisterScreen extends GetWidget<AuthController> {
                           controller.email = value;
                         },
                         validate: (value) {
-                          if (value == null) {
-                            print('Error');
+                          if (value == '') {
+                            return 'Please enter Email';
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return 'Please Enter a valid Email';
                           }
                         },
                       ),
@@ -90,17 +94,37 @@ class RegisterScreen extends GetWidget<AuthController> {
                       CustomTextFormField(
                         titleText: 'Password',
                         hint: '*******',
+                        hidePassword: true,
                         onSave: (value) {
                           controller.password = value;
                         },
                         validate: (value) {
-                          if (value == null) {
-                            print('Error');
+                          if (value == '') {
+                            return 'Please enter Password';
                           }
                         },
                       ),
                       SizedBox(
-                        height: 50.0,
+                        height: 30.0,
+                      ),
+                      CustomTextFormField(
+                        titleText: 'Confirm Password',
+                        hint: '*******',
+                        hidePassword: true,
+                        onSave: (value) {
+                          controller.confirmedPassword = value;
+                        },
+                        validate: (value) {
+                          if (value == '') {
+                            return 'Re_enter your password';
+                          }
+                          if (controller.password != controller.confirmedPassword) {
+                            return ' Password does n\'t match';
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 30.0,
                       ),
                       CustomButton(
                         btnText: 'Sign UP',

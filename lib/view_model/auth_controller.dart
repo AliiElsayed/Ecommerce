@@ -17,7 +17,8 @@ class AuthController extends GetxController {
   Rx<User> _user = Rx<User>();
   String get user => _user.value?.email;
 
-  String email, password, name;
+  String email, password, name, confirmedPassword;
+  bool hidePassword = false;
 
   @override
   void onInit() {
