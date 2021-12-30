@@ -1,5 +1,6 @@
 import 'package:e_commerce/model/user_model.dart';
 import 'package:e_commerce/service/local_storage_controller.dart';
+import 'package:e_commerce/view/auth/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
@@ -21,6 +22,7 @@ class ProfileController extends GetxController {
     await GoogleSignIn().signOut();
     await FacebookLogin().logOut();
     localStorageController.deleteCachedData();
+    Get.offAll(LoginScreen());
     update();
   }
 
