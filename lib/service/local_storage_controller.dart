@@ -7,7 +7,7 @@ class LocalStorageController extends GetxController {
   setUserData(UserModel userData) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('cachedUserData', jsonEncode(userData.toJson()));
-    print('seeetiiiing data ');
+    print('seeetiiiing data LocalStorageController ');
     update();
   }
 

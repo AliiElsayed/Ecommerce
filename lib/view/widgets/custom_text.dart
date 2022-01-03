@@ -15,7 +15,7 @@ class CustomText extends StatelessWidget {
     this.fontColor,
     this.alignment = Alignment.topLeft,
     this.linesHeight = 1.0,
-    this.weight =FontWeight.w500
+    this.weight =FontWeight.w500,
   });
 
   @override

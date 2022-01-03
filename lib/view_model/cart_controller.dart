@@ -39,6 +39,7 @@ class CartController extends GetxController {
   }
 
   getTotalPrice() {
+    totalPrice = 0 ;
     for (int i = 0; i < allCartProducts.length; i++) {
       totalPrice += (double.parse(allCartProducts[i].price) *
           allCartProducts[i].quantity);
@@ -75,15 +76,17 @@ class CartController extends GetxController {
    switch (action){
      case SlidableActions.AddToFavorite:
        allCartProducts.removeAt(index);
+       getTotalPrice();
        Get.snackbar('Done !', 'Item added to Favorites',);
        break;
      case SlidableActions.Delete:
        removeProductFromCart(id);
        allCartProducts.removeAt(index);
+       getTotalPrice();
        Get.snackbar( 'Done', 'Item deleted successfully' );
        break;
    }
-
+   update();
   }
 
 

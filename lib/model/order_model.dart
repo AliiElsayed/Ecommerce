@@ -1,43 +1,52 @@
 import 'package:e_commerce/model/cart_product_model.dart';
+import 'package:flutter/cupertino.dart';
 
 class OrderModel {
-  String userId, dateTime;
-  List<CartProductModel> orderedProducts;
-  DeterminedAddress address;
-
+  String userId, orderDate;
+  List<CartProductModel> orderProducts;
+  UserGivenAddress address;
   OrderModel({
-    this.userId,
-    this.dateTime,
-    this.orderedProducts,
-    this.address,
+    @required this.userId,
+    @required this.orderDate,
+    @required this.orderProducts,
+    @required this.address,
   });
 
   OrderModel.fromJson(Map<String, dynamic> orderData) {
     userId = orderData['userId'];
-    dateTime = orderData['dateTime'];
-    orderedProducts = orderData['orderedProducts'];
-    address = orderData['address'];
+    orderDate = orderData['pickedDate'];
+    orderProducts = assignOrderProducts(orderData['orderedProducts']);
+    address = UserGivenAddress.fromJson(orderData['address']);
   }
   toJson() {
     return {
       'userId': userId,
-      'dateTime': dateTime,
-      'orderedProducts': orderedProducts,
-      'address': address,
+      'pickedDate': orderDate,
+      'orderedProducts':
+          orderProducts.map((product) => product.toJson()).toList(),
+      'address': address.toJson(),
     };
+  }
+
+  List<CartProductModel> assignOrderProducts(List data) {
+    List<CartProductModel> allOrderProducts = [];
+    for (final product in data) {
+      allOrderProducts.add(CartProductModel.fromJson(product));
+    }
+    return allOrderProducts;
   }
 }
 
-class DeterminedAddress {
+class UserGivenAddress {
   String street1, street2, city, state, country;
-  DeterminedAddress({
+  UserGivenAddress({
     this.street1,
     this.street2,
     this.city,
     this.state,
     this.country,
   });
-  DeterminedAddress.fromJson(Map<String, dynamic> receivedAddress) {
+  UserGivenAddress.fromJson(Map<String, dynamic> receivedAddress) {
     street1 = receivedAddress['street1'];
     street2 = receivedAddress['street2'];
     city = receivedAddress['city'];

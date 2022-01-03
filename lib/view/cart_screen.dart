@@ -83,17 +83,20 @@ class CartScreen extends StatelessWidget {
                                         fit: BoxFit.fill,
                                       )),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 30.0),
+                                    padding: const EdgeInsets.only(left:25.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        CustomText(
-                                          text: cartController
-                                              .allCartProducts[index].name,
-                                          size: 20.0,
+                                        Container(
+                                          width: 185,
+                                          child: CustomText(
+                                            text: cartController
+                                                .allCartProducts[index].name,
+                                            size: 21.0,
+                                          ),
                                         ),
                                         SizedBox(
                                           height: 10.0,

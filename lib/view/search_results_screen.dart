@@ -1,5 +1,4 @@
 import 'package:e_commerce/constants.dart';
-import 'package:e_commerce/view/control_view.dart';
 import 'package:e_commerce/view/details_screen.dart';
 import 'package:e_commerce/view/widgets/custom_text.dart';
 import 'package:e_commerce/view_model/search_controller.dart';

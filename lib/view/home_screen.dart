@@ -78,7 +78,9 @@ class HomeScreen extends StatelessWidget {
                                               TextFieldConfiguration(
                                             controller: searchController
                                                 .typedValueController,
-                                            onChanged: (value) {},
+                                            onChanged: (value) {
+                                              //_searchFormKey.currentState.save();
+                                            },
                                             decoration: InputDecoration(
                                               border: InputBorder.none,
                                               suffixIcon: IconButton(
