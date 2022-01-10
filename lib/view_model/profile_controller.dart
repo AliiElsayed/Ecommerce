@@ -20,7 +20,7 @@ class ProfileController extends GetxController {
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
     await FacebookLogin().logOut();
-    localStorageController.deleteCachedData();
+    localStorageController.deleteUserCachedData();
     update();
   }
 

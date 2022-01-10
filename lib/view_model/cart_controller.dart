@@ -2,7 +2,6 @@ import 'package:e_commerce/model/cart_product_model.dart';
 import 'package:e_commerce/service/sqflite_database/cart_database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../constants.dart';
 
 class CartController extends GetxController {
@@ -24,7 +23,7 @@ class CartController extends GetxController {
         return;
       }
     }
-   await  dbHelper.insert(model);
+    await dbHelper.insert(model);
     getCartList();
     update();
   }
@@ -39,7 +38,7 @@ class CartController extends GetxController {
   }
 
   getTotalPrice() {
-    totalPrice = 0 ;
+    totalPrice = 0;
     for (int i = 0; i < allCartProducts.length; i++) {
       totalPrice += (double.parse(allCartProducts[i].price) *
           allCartProducts[i].quantity);
@@ -47,47 +46,48 @@ class CartController extends GetxController {
     update();
   }
 
-  increaseQuantity(int productIndex) async{
-    allCartProducts[productIndex].quantity ++;
-    totalPrice += (double.parse(allCartProducts[productIndex].price)) ;
+  increaseQuantity(int productIndex) async {
+    allCartProducts[productIndex].quantity++;
+    totalPrice += (double.parse(allCartProducts[productIndex].price));
     await dbHelper.update(allCartProducts[productIndex]);
     update();
   }
 
   decreaseQuantity(int productIndex) async {
     allCartProducts[productIndex].quantity--;
-    totalPrice -= (double.parse(allCartProducts[productIndex].price)) ;
+    totalPrice -= (double.parse(allCartProducts[productIndex].price));
     await dbHelper.update(allCartProducts[productIndex]);
     update();
   }
 
-  clearCart() async{
+  clearCart() async {
     await dbHelper.deleteAllCartProducts();
     allCartProducts.clear();
     update();
   }
 
-  removeProductFromCart( String id) async{
+  removeProductFromCart(String id) async {
     await dbHelper.deleteProduct(id);
     update();
   }
 
-  onActionPressed(int index , SlidableActions action , String id){
-   switch (action){
-     case SlidableActions.AddToFavorite:
-       allCartProducts.removeAt(index);
-       getTotalPrice();
-       Get.snackbar('Done !', 'Item added to Favorites',);
-       break;
-     case SlidableActions.Delete:
-       removeProductFromCart(id);
-       allCartProducts.removeAt(index);
-       getTotalPrice();
-       Get.snackbar( 'Done', 'Item deleted successfully' );
-       break;
-   }
-   update();
+  onActionPressed(int index, SlidableActions action, String id) {
+    switch (action) {
+      case SlidableActions.AddToFavorite:
+        allCartProducts.removeAt(index);
+        getTotalPrice();
+        Get.snackbar(
+          'Done !',
+          'Item added to Favorites',
+        );
+        break;
+      case SlidableActions.Delete:
+        removeProductFromCart(id);
+        allCartProducts.removeAt(index);
+        getTotalPrice();
+        Get.snackbar('Done', 'Item deleted successfully');
+        break;
+    }
+    update();
   }
-
-
 }

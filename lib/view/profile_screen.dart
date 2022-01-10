@@ -1,4 +1,5 @@
 import 'package:e_commerce/constants.dart';
+import 'package:e_commerce/view/user_orders_screen.dart';
 import 'package:e_commerce/view/widgets/custom_text.dart';
 import 'package:e_commerce/view/widgets/reusable_list_tile.dart';
 import 'package:e_commerce/view_model/profile_controller.dart';
@@ -33,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(50.0),
                                   child: controller.userData.pic == null
                                       ? Image.asset(
-                                      'assets/images/default.png',
+                                          'assets/images/default.png',
                                         )
                                       : Image.network(controller.userData.pic),
                                 ),
@@ -93,7 +94,9 @@ class ProfileScreen extends StatelessWidget {
                         ReusableTile(
                           tileTitle: 'Order History',
                           iconImage: 'assets/icon_images/Icon_History.png',
-                          onTilePressed: () {},
+                          onTilePressed: () {
+                            Get.to(UserOrdersScreen());
+                          },
                         ),
                         ReusableTile(
                           tileTitle: 'Cards',

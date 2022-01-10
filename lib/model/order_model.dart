@@ -5,11 +5,15 @@ class OrderModel {
   String userId, orderDate;
   List<CartProductModel> orderProducts;
   UserGivenAddress address;
+  String status;
+  String totalPrice;
   OrderModel({
     @required this.userId,
     @required this.orderDate,
     @required this.orderProducts,
     @required this.address,
+    @required this.status,
+    @required this.totalPrice,
   });
 
   OrderModel.fromJson(Map<String, dynamic> orderData) {
@@ -17,6 +21,8 @@ class OrderModel {
     orderDate = orderData['pickedDate'];
     orderProducts = assignOrderProducts(orderData['orderedProducts']);
     address = UserGivenAddress.fromJson(orderData['address']);
+    status = orderData['status'];
+    totalPrice = orderData['totalPrice'];
   }
   toJson() {
     return {
@@ -25,13 +31,15 @@ class OrderModel {
       'orderedProducts':
           orderProducts.map((product) => product.toJson()).toList(),
       'address': address.toJson(),
+      'status': status,
+      'totalPrice': totalPrice,
     };
   }
 
   List<CartProductModel> assignOrderProducts(List data) {
     List<CartProductModel> allOrderProducts = [];
-    for (final product in data) {
-      allOrderProducts.add(CartProductModel.fromJson(product));
+    for (int i = 0; i < data.length; i++) {
+      allOrderProducts.add(CartProductModel.fromJson(data[i]));
     }
     return allOrderProducts;
   }

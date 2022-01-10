@@ -31,9 +31,10 @@ class LocalStorageController extends GetxController {
     return UserModel.fromJson(jsonDecode(retrievedData));
   }
 
-  deleteCachedData() async {
+  deleteUserCachedData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
+    print(' clearing local stored data.................');
     update();
   }
 

@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeliveryTime extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CheckOutController>(
       init: Get.find(),
-      builder:(widgetController)=> Expanded(
+      builder: (widgetController) => Expanded(
         child: Container(
           padding: EdgeInsets.all(5.0),
           child: SingleChildScrollView(
@@ -22,8 +21,10 @@ class DeliveryTime extends StatelessWidget {
                       size: 22.0,
                     ),
                     subtitle: CustomText(
-                      text: '\nOrder will be delivered between 3 - 5 business days',
+                      text:
+                          '\nOrder will be delivered between 3 - 5 business days',
                       size: 17.0,
+                      linesNum: 3,
                     ),
                     activeColor: kPrimaryColor,
                     controlAffinity: ListTileControlAffinity.trailing,
@@ -44,6 +45,7 @@ class DeliveryTime extends StatelessWidget {
                       text:
                           '\nPlace your order before 6pm and your items will be delivered the next day',
                       size: 17.0,
+                      linesNum: 3,
                     ),
                     activeColor: kPrimaryColor,
                     controlAffinity: ListTileControlAffinity.trailing,
@@ -64,6 +66,7 @@ class DeliveryTime extends StatelessWidget {
                       text:
                           '\nPick a particular date from the calendar and order will be delivered on selected date',
                       size: 17.0,
+                      linesNum: 4,
                     ),
                     activeColor: kPrimaryColor,
                     controlAffinity: ListTileControlAffinity.trailing,

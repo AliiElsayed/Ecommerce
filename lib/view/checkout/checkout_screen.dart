@@ -76,7 +76,7 @@ class CheckOutScreen extends StatelessWidget {
                     }
                   },
                   lineWidgetBuilder: (index) {
-                    if (index > 0 ) {
+                    if (index > 0) {
                       if (index == controller.currentIndex) {
                         final prevColor = controller.getColor(index - 1);
                         final color = controller.getColor(index);
@@ -144,7 +144,7 @@ class CheckOutScreen extends StatelessWidget {
                                 ? 'Deliver'
                                 : 'NEXT',
                             onPress: () {
-                              controller.onNextPressed();
+                              controller.onNextPressed(context);
                             },
                           ),
                         ),

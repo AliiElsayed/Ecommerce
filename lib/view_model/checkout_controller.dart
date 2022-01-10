@@ -6,6 +6,7 @@ import 'package:e_commerce/view/control_view.dart';
 import 'package:e_commerce/view_model/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:toast/toast.dart';
 
 import '../constants.dart';
 
@@ -72,7 +73,7 @@ class CheckOutController extends GetxController {
     currentUserId = userData.userId;
   }
 
-  void onNextPressed() {
+  void onNextPressed(context) {
     if (currentIndex == 0 || currentIndex < 0) {
       currentPage = Pages.AddAddress;
       currentIndex++;
@@ -94,10 +95,15 @@ class CheckOutController extends GetxController {
           state: state,
           country: country,
         ),
+        status: 'In Transit',
+        totalPrice: Get.find<CartController>().totalPrice.toString(),
       );
-      print(orderDetails.toJson());
-      print('------------------------------------------');
       ordersRef.add(orderDetails.toJson());
+
+      Toast.show(
+        'Your order registered Successfully',
+        context,
+      );
       Get.find<CartController>().clearCart();
       Get.offAll(
         ControlView(),

@@ -6,6 +6,7 @@ import 'package:e_commerce/view/widgets/custom_text.dart';
 import 'package:e_commerce/view_model/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:toast/toast.dart';
 
 class DetailsScreen extends StatelessWidget {
   final ProductModel model;
@@ -105,6 +106,7 @@ class DetailsScreen extends StatelessWidget {
                       text: model.description,
                       size: 16.0,
                       linesHeight: 2.0,
+                      linesNum: 80,
                     ),
                   ],
                 ),
@@ -141,16 +143,21 @@ class DetailsScreen extends StatelessWidget {
                     width: 160.0,
                     height: 60,
                     child: CustomButton(
-                      btnText: 'ADD',
-                      onPress: (){
-                        controller.addToCart(CartProductModel(
-                            name : model.name,
-                            image : model.image,
-                            price : model.price,
-                            productId: model.productId,
-                            quantity : 1 ));
-                      }
-                    ),
+                        btnText: 'ADD',
+                        onPress: () {
+                          controller.addToCart(
+                            CartProductModel(
+                                name: model.name,
+                                image: model.image,
+                                price: model.price,
+                                productId: model.productId,
+                                quantity: 1),
+                          );
+                          Toast.show(
+                            '${model.name} Added To Your Cart',
+                            context,
+                          );
+                        }),
                   ),
                 ),
               ],
