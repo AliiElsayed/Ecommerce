@@ -7,7 +7,7 @@ final String productQuantity = 'quantity';
 final String productPrice = 'price';
 final String productId = 'productId';
 
-const kPrimaryColor = Color.fromRGBO(0, 197, 105, 1);
+const kPrimaryColor = Color.fromRGBO(0, 197, 105, 1.0);
 
 const kTileHeight = 50.0;
 const inProgressColor = Colors.black87;

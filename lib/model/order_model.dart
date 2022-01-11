@@ -7,6 +7,7 @@ class OrderModel {
   UserGivenAddress address;
   String status;
   String totalPrice;
+  String orderId;
   OrderModel({
     @required this.userId,
     @required this.orderDate,
@@ -14,6 +15,7 @@ class OrderModel {
     @required this.address,
     @required this.status,
     @required this.totalPrice,
+    @required this.orderId,
   });
 
   OrderModel.fromJson(Map<String, dynamic> orderData) {
@@ -23,6 +25,7 @@ class OrderModel {
     address = UserGivenAddress.fromJson(orderData['address']);
     status = orderData['status'];
     totalPrice = orderData['totalPrice'];
+    orderId = orderData['orderId'];
   }
   toJson() {
     return {
@@ -33,6 +36,7 @@ class OrderModel {
       'address': address.toJson(),
       'status': status,
       'totalPrice': totalPrice,
+      'orderId': orderId
     };
   }
 

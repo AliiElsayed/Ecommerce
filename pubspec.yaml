@@ -44,6 +44,7 @@ dependencies:
   substring_highlight: ^0.1.2
   intl: ^0.16.1
   toast: ^0.1.5
+  uuid: ^2.2.2
 
 dev_dependencies:
   flutter_test:

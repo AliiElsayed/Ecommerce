@@ -7,6 +7,7 @@ import 'package:e_commerce/view_model/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:toast/toast.dart';
+import 'package:uuid/uuid.dart';
 
 import '../constants.dart';
 
@@ -84,7 +85,10 @@ class CheckOutController extends GetxController {
         currentIndex++;
       }
     } else if (currentIndex == 2) {
+      var orderGeneratedId =
+          Uuid().v1(); // for generating a unique user id for each order
       OrderModel orderDetails = OrderModel(
+        orderId: orderGeneratedId,
         userId: currentUserId,
         orderDate: pickedDate.toString(),
         orderProducts: Get.find<CartController>().allCartProducts,
