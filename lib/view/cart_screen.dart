@@ -3,6 +3,7 @@ import 'package:e_commerce/view/checkout/checkout_screen.dart';
 import 'package:e_commerce/view/widgets/custom_auth_button.dart';
 import 'package:e_commerce/view/widgets/custom_text.dart';
 import 'package:e_commerce/view_model/cart_controller.dart';
+import 'package:e_commerce/view_model/favorites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,7 +13,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(
-      init: CartController(),
+      init: Get.put(CartController()),
       builder: (cartController) => Scaffold(
         body: cartController.allCartProducts.isEmpty
             ? Column(
@@ -31,6 +32,7 @@ class CartScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     size: 20.0,
                     linesHeight: 1.2,
+                    linesNum: 2,
                   ),
                 ],
               )
@@ -44,30 +46,48 @@ class CartScreen extends StatelessWidget {
                           return Slidable(
                             actionPane: SlidableDrawerActionPane(),
                             actions: [
-                              IconSlideAction(
-                                icon: Icons.star,
-                                color: Colors.yellow.shade600,
-                                foregroundColor: Colors.white,
-                                onTap: () {
-                                  cartController.onActionPressed(
-                                      index,
-                                      SlidableActions.AddToFavorite,
-                                      cartController
-                                          .allCartProducts[index].productId);
-                                },
+                              GetBuilder<FavoritesController>(
+                                init: FavoritesController(),
+                                builder: (favoritesController) => Container(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: IconSlideAction(
+                                    iconWidget: Icon(
+                                      Icons.star,
+                                      size: 35.0,
+                                      color: Colors.white,
+                                    ),
+                                    color: Colors.yellow.shade600,
+                                    foregroundColor: Colors.white,
+                                    onTap: () {
+                                      cartController.onActionPressed(
+                                        index,
+                                        SlidableActions.AddToFavorite,
+                                        cartController
+                                            .allCartProducts[index].productId,
+                                      );
+                                    },
+                                  ),
+                                ),
                               ),
                             ],
                             secondaryActions: [
-                              IconSlideAction(
-                                icon: Icons.delete_forever_outlined,
-                                color: Color.fromRGBO(250, 68, 37, 1.0),
-                                onTap: () {
-                                  cartController.onActionPressed(
-                                      index,
-                                      SlidableActions.Delete,
-                                      cartController
-                                          .allCartProducts[index].productId);
-                                },
+                              Container(
+                                padding: EdgeInsets.only(left: 10.0),
+                                child: IconSlideAction(
+                                  iconWidget: Icon(
+                                    Icons.delete_forever_outlined,
+                                    size: 35.0,
+                                    color: Colors.white,
+                                  ),
+                                  color: Color.fromRGBO(250, 68, 37, 1.0),
+                                  onTap: () {
+                                    cartController.onActionPressed(
+                                        index,
+                                        SlidableActions.Delete,
+                                        cartController
+                                            .allCartProducts[index].productId);
+                                  },
+                                ),
                               ),
                             ],
                             actionExtentRatio: 0.27,
@@ -83,7 +103,7 @@ class CartScreen extends StatelessWidget {
                                         fit: BoxFit.fill,
                                       )),
                                   Padding(
-                                    padding: const EdgeInsets.only(left:25.0),
+                                    padding: const EdgeInsets.only(left: 25.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,

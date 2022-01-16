@@ -25,9 +25,12 @@ class CustomProductViewer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
+              height: 250,
+              width: 175,
               child: Image.network(
                 determinedProduct.image,
-                fit: BoxFit.cover,
+                //  fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
             SizedBox(
@@ -36,6 +39,7 @@ class CustomProductViewer extends StatelessWidget {
             CustomText(
               text: determinedProduct.name,
               size: 18.0,
+              weight: FontWeight.bold,
             ),
             SizedBox(
               height: 7.0,
@@ -52,7 +56,7 @@ class CustomProductViewer extends StatelessWidget {
             CustomText(
               text: '\$ ${determinedProduct.price.toString()} ',
               fontColor: kPrimaryColor,
-              size: 18.0,
+              size: 20.0,
             ),
           ],
         ),

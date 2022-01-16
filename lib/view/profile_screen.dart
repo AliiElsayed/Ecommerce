@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'favorites_screen.dart';
+
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -90,6 +92,13 @@ class ProfileScreen extends StatelessWidget {
                           tileTitle: 'Shipping Address',
                           iconImage: 'assets/icon_images/Icon_Location.png',
                           onTilePressed: () {},
+                        ),
+                        ReusableTile(
+                          tileTitle: 'Favorites',
+                          iconImage: 'assets/icon_images/favorites.PNG',
+                          onTilePressed: () {
+                            Get.to(FavoritesScreen());
+                          },
                         ),
                         ReusableTile(
                           tileTitle: 'Order History',

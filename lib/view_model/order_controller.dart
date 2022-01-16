@@ -38,7 +38,7 @@ class OrderController extends GetxController {
     update();
   }
 
-  orderImagesViewer(int orderIndex) {
+  Widget orderImagesViewer(int orderIndex) {
     List<CartProductModel> ordersProductsList =
         userOrders[orderIndex].orderProducts;
     List<String> imagesList = [];
