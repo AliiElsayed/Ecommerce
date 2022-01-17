@@ -9,8 +9,8 @@ class SearchController extends GetxController {
   List<ProductModel> searchResultList = [];
   ValueNotifier<bool> loading = ValueNotifier(false);
   TextEditingController typedValueController = TextEditingController();
-  List<String> allProductsNames =[];
-
+  List<String> allProductsNames = [];
+  GlobalKey<FormState> searchFormKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -18,20 +18,24 @@ class SearchController extends GetxController {
     getAllProductsNames();
   }
 
-  getAllProductsNames(){
+  getAllProductsNames() {
     List<ProductModel> retrievedList =
         Get.find<HomeController>().ourAllProducts;
-    for (int i = 0; i < retrievedList.length; i++){
-     allProductsNames.add(retrievedList[i].name);
+    for (int i = 0; i < retrievedList.length; i++) {
+      allProductsNames.add(retrievedList[i].name);
     }
     print('Names retrived...................');
   }
+
   String removeTrailingWhiteSpace(String str) {
     return str.replaceFirst(new RegExp(r"\s+$"), "");
   }
+
   getSearchSuggestions(String typedText) {
-    return allProductsNames.where((item) =>
-        item.toLowerCase().contains(removeTrailingWhiteSpace(typedText).toLowerCase()))
+    return allProductsNames
+        .where((item) => item
+            .toLowerCase()
+            .contains(removeTrailingWhiteSpace(typedText).toLowerCase()))
         .toList();
   }
 
@@ -40,8 +44,9 @@ class SearchController extends GetxController {
       loading.value = true;
       searchResultList = Get.find<HomeController>()
           .ourAllProducts
-          .where((product) =>
-              product.name.toLowerCase().contains(removeTrailingWhiteSpace(searchText).toLowerCase()))
+          .where((product) => product.name
+              .toLowerCase()
+              .contains(removeTrailingWhiteSpace(searchText).toLowerCase()))
           .toList();
       Get.to(SearchResultViewer());
       loading.value = false;

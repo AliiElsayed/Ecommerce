@@ -4,6 +4,7 @@ import 'package:e_commerce/view_model/cart_controller.dart';
 import 'package:e_commerce/view_model/favorites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../constants.dart';
@@ -37,10 +38,19 @@ class FavoritesScreen extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : favoritesController.allFavoriteProducts.isEmpty
-                ? CustomText(
-                    text: 'No Products Added Yet .....!!',
-                    size: 25.0,
-                    alignment: Alignment.center,
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          height: 250.0,
+                          width: 200.0,
+                          child: SvgPicture.asset('assets/images/no_Fav.svg')),
+                      CustomText(
+                        text: 'No Favorites Added yet ...',
+                        size: 20.0,
+                        alignment: Alignment.center,
+                      ),
+                    ],
                   )
                 : Container(
                     child: ListView.builder(

@@ -10,7 +10,8 @@ import 'package:get/get.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
 class HomeScreen extends StatelessWidget {
-  final _searchFormKey = GlobalKey<FormState>();
+//  final GlobalKey<FormState> _searchFormKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
@@ -49,7 +50,8 @@ class HomeScreen extends StatelessWidget {
                                     size: 28.0,
                                   ),
                                   onPressed: () {
-                                    _searchFormKey.currentState.save();
+                                    searchController.searchFormKey.currentState
+                                        .save();
                                     searchController.onSearchPressed();
                                   },
                                 ),
@@ -59,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Form(
-                                  key: _searchFormKey,
+                                  key: searchController.searchFormKey,
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30.0),
@@ -162,6 +164,8 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+
+                      /**/
                       // Container(
                       //   decoration: BoxDecoration(
                       //       borderRadius: BorderRadius.circular(30.0),

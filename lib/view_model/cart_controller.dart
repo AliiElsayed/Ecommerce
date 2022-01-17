@@ -64,9 +64,11 @@ class CartController extends GetxController {
   }
 
   decreaseQuantity(int productIndex) async {
-    allCartProducts[productIndex].quantity--;
-    totalPrice -= (double.parse(allCartProducts[productIndex].price));
-    await dbHelper.update(allCartProducts[productIndex]);
+    if (allCartProducts[productIndex].quantity > 1) {
+      allCartProducts[productIndex].quantity--;
+      totalPrice -= (double.parse(allCartProducts[productIndex].price));
+      await dbHelper.update(allCartProducts[productIndex]);
+    }
     update();
   }
 

@@ -166,7 +166,8 @@ class CartScreen extends StatelessWidget {
                                                 },
                                                 child: Container(
                                                     padding: EdgeInsets.only(
-                                                        bottom: 15.0),
+                                                      bottom: 15.0,
+                                                    ),
                                                     child:
                                                         Icon(Icons.minimize)),
                                               ),

@@ -121,6 +121,8 @@ class ProfileScreen extends StatelessWidget {
                           tileTitle: 'Log Out',
                           iconImage: 'assets/icon_images/Icon_Exit.png',
                           onTilePressed: () {
+                            Navigator.of(context)
+                                .popAndPushNamed('/loginScreen');
                             controller.logOut();
                           },
                         ),
