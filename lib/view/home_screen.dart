@@ -5,7 +5,6 @@ import 'package:e_commerce/view/widgets/custom_product_viewer.dart';
 import 'package:e_commerce/view/widgets/custom_text.dart';
 import 'package:e_commerce/view/widgets/icon_container.dart';
 import 'package:e_commerce/view_model/home_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
