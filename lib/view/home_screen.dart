@@ -1,17 +1,15 @@
+import 'package:e_commerce/constants.dart';
 import 'package:e_commerce/view/category_details.dart';
+import 'package:e_commerce/view/search_screen.dart';
 import 'package:e_commerce/view/widgets/custom_product_viewer.dart';
 import 'package:e_commerce/view/widgets/custom_text.dart';
+import 'package:e_commerce/view/widgets/icon_container.dart';
 import 'package:e_commerce/view_model/home_controller.dart';
-import 'package:e_commerce/view_model/search_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
-import 'package:substring_highlight/substring_highlight.dart';
 
 class HomeScreen extends StatelessWidget {
-//  final GlobalKey<FormState> _searchFormKey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
@@ -27,145 +25,113 @@ class HomeScreen extends StatelessWidget {
                       top: 70, right: 13.0, bottom: 5.0, left: 13.0),
                   child: Column(
                     children: [
-                      Container(
-                        child: GetBuilder<SearchController>(
-                          init: Get.put(SearchController()),
-                          builder: (searchController) => Row(
-                            children: [
-                              Container(
-                                height: 45.0,
-                                width: 45.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7.0),
-                                  shape: BoxShape.rectangle,
-                                  color: Colors.grey.shade200,
-                                  border: Border.all(
-                                    color: Colors.grey.shade400,
-                                  ),
-                                ),
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.search,
-                                    color: Colors.black45,
-                                    size: 28.0,
-                                  ),
-                                  onPressed: () {
-                                    searchController.searchFormKey.currentState
-                                        .save();
-                                    searchController.onSearchPressed();
-                                  },
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8.0,
-                              ),
-                              Expanded(
-                                child: Form(
-                                  key: searchController.searchFormKey,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      color: Colors.grey.shade200,
-                                      border: Border.all(
-                                        color: Colors.grey.shade400,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: TypeAheadFormField(
-                                        textFieldConfiguration:
-                                            TextFieldConfiguration(
-                                          controller: searchController
-                                              .typedValueController,
-                                          onChanged: (value) {
-                                            //_searchFormKey.currentState.save();
-                                          },
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            suffixIcon: IconButton(
-                                              icon: Icon(
-                                                Icons.close,
-                                                color: Colors.grey,
-                                              ),
-                                              onPressed: () {
-                                                searchController
-                                                    .typedValueController
-                                                    .clear();
-                                              },
-                                            ),
-                                            hintText: 'Search',
-                                          ),
-                                        ),
-                                        suggestionsCallback: (pattern) {
-                                          return searchController
-                                              .getSearchSuggestions(pattern);
-                                        },
-                                        getImmediateSuggestions: true,
-                                        hideOnEmpty: true,
-                                        hideOnLoading: true,
-                                        hideSuggestionsOnKeyboardHide: true,
-                                        // noItemsFoundBuilder: (context) {
-                                        //   return Padding(
-                                        //     padding: const EdgeInsets.all(8.0),
-                                        //     child: Text('No Recommendations'),
-                                        //   );
-                                        // },
-                                        itemBuilder: (context, suggestion) {
-                                          return ListTile(
-                                            title: SubstringHighlight(
-                                              text: suggestion,
-                                              term: searchController
-                                                  .typedValueController.text,
-                                              textStyleHighlight: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w800),
-                                            ),
-                                          );
-                                        },
-                                        transitionBuilder: (context,
-                                            suggestionsBox, controller) {
-                                          return suggestionsBox;
-                                        },
-                                        onSuggestionSelected: (suggestion) {
-                                          searchController.typedValueController
-                                              .text = suggestion;
-                                        },
-                                        onSaved: (value) {
-                                          searchController.searchText = value;
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                  // child: TextFormField(
-                                  //    decoration: InputDecoration(
-                                  //      border: InputBorder.none,
-                                  //      prefixIcon: IconButton(
-                                  //        icon: Icon(Icons.search,),
-                                  //        onPressed: (){
-                                  //         searchController.onSearchPressed();
-                                  //        },
-                                  //        color: Colors.black,
-                                  //      ),
-                                  //    ),
-                                  //   onSaved: (value){
-                                  //      searchController.searchText = value;
-                                  //   },
-                                  //   // validator: (value){
-                                  //   //   if(value == ''){
-                                  //   //     return '';
-                                  //   //   }
-                                  //   //   return null;
-                                  //   // },
-                                  //  ),
-                                ),
-                              ),
-                            ],
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomText(
+                              text: 'Brand City',
+                              size: 35.0,
+                              fontColor: Colors.black,
+                              fontFamily: 'Pacifico',
+                            ),
                           ),
-                        ),
+                          IconContainer(
+                            icon: Icons.notifications_none_outlined,
+                            onIconPressed: () {},
+                          ),
+                          IconContainer(
+                            icon: Icons.search,
+                            onIconPressed: () {
+                              Get.to(SearchScreen());
+                            },
+                          ),
+
+                          // Expanded(
+                          //   child: Form(
+                          //     key: searchController.searchFormKey,
+                          //     child: Container(
+                          //       decoration: BoxDecoration(
+                          //         borderRadius: BorderRadius.circular(30.0),
+                          //         color: Colors.grey.shade200,
+                          //         border: Border.all(
+                          //           color: Colors.grey.shade400,
+                          //         ),
+                          //       ),
+                          //       child: Padding(
+                          //         padding: EdgeInsets.symmetric(
+                          //             horizontal: 10.0),
+                          //         child: TypeAheadFormField(
+                          //           textFieldConfiguration:
+                          //               TextFieldConfiguration(
+                          //             controller: searchController
+                          //                 .typedValueController,
+                          //             onChanged: (value) {
+                          //               //_searchFormKey.currentState.save();
+                          //             },
+                          //             decoration: InputDecoration(
+                          //               contentPadding: EdgeInsets.only(
+                          //                   left: 8.0, top: 13),
+                          //               border: InputBorder.none,
+                          //               suffixIcon: IconButton(
+                          //                 icon: Icon(
+                          //                   Icons.close,
+                          //                   color: Colors.grey,
+                          //                 ),
+                          //                 onPressed: () {
+                          //                   searchController
+                          //                       .typedValueController
+                          //                       .clear();
+                          //                 },
+                          //               ),
+                          //               hintText: 'Search',
+                          //             ),
+                          //           ),
+                          //           suggestionsCallback: (pattern) {
+                          //             return searchController
+                          //                 .getSearchSuggestions(pattern);
+                          //           },
+                          //           getImmediateSuggestions: true,
+                          //           hideOnEmpty: true,
+                          //           hideOnLoading: true,
+                          //           hideSuggestionsOnKeyboardHide: true,
+                          //           // noItemsFoundBuilder: (context) {
+                          //           //   return Padding(
+                          //           //     padding: const EdgeInsets.all(8.0),
+                          //           //     child: Text('No Recommendations'),
+                          //           //   );
+                          //           // },
+                          //           itemBuilder: (context, suggestion) {
+                          //             return ListTile(
+                          //               title: SubstringHighlight(
+                          //                 text: suggestion,
+                          //                 term: searchController
+                          //                     .typedValueController.text,
+                          //                 textStyleHighlight: TextStyle(
+                          //                   color: Colors.black,
+                          //                   fontWeight: FontWeight.w800,
+                          //                 ),
+                          //               ),
+                          //             );
+                          //           },
+                          //           transitionBuilder: (context,
+                          //               suggestionsBox, controller) {
+                          //             return suggestionsBox;
+                          //           },
+                          //           onSuggestionSelected: (suggestion) {
+                          //             searchController.typedValueController
+                          //                 .text = suggestion;
+                          //           },
+                          //           onSaved: (value) {
+                          //             searchController.searchText = value;
+                          //           },
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
                       ),
 
-                      /**/
                       // Container(
                       //   decoration: BoxDecoration(
                       //       borderRadius: BorderRadius.circular(30.0),
@@ -201,12 +167,12 @@ class HomeScreen extends StatelessWidget {
                       //         hideOnEmpty: true,
                       //         hideOnLoading: true,
                       //         hideSuggestionsOnKeyboardHide: true,
-                      //         // noItemsFoundBuilder: (context) {
-                      //         //   return Padding(
-                      //         //     padding: const EdgeInsets.all(8.0),
-                      //         //     child: Text('No Recommendations'),
-                      //         //   );
-                      //         // },
+                      //         noItemsFoundBuilder: (context) {
+                      //          return Padding(
+                      //          padding: const EdgeInsets.all(8.0),
+                      //          child: Text('No Recommendations'),
+                      //          );
+                      //           },
                       //         itemBuilder: (context, suggestion) {
                       //           return ListTile(
                       //             title: SubstringHighlight(
@@ -255,8 +221,9 @@ class HomeScreen extends StatelessWidget {
                       //     ),
                       //   ),
                       // ),
+
                       SizedBox(
-                        height: 20.0,
+                        height: 25.0,
                       ),
                       CustomText(
                         text: 'Categories',
@@ -272,7 +239,6 @@ class HomeScreen extends StatelessWidget {
                           builder: (controller) {
                             return Container(
                               height: 120.0,
-                              // padding: EdgeInsets.all(30.0),
                               child: ListView.separated(
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
@@ -341,6 +307,7 @@ class HomeScreen extends StatelessWidget {
                           CustomText(
                             text: 'See all',
                             size: 18.0,
+                            fontColor: kPrimaryColor,
                           )
                         ],
                       ),

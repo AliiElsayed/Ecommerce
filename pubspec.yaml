@@ -83,3 +83,6 @@ flutter:
     - family: Source Sans Pro
       fonts:
         - asset: assets/fonts/SourceSansPro-Regular.ttf
+    - family: Pacifico
+      fonts:
+        - asset: assets/fonts/Pacifico-Regular.ttf

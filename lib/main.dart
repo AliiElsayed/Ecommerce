@@ -1,5 +1,4 @@
 import 'file:///C:/Users/ali%20elsayed/AndroidStudioProjects/e_commerce/lib/helper/binding.dart';
-import 'package:e_commerce/view/auth/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,9 +17,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: ControlView(),
-      getPages: [
-        GetPage(name: '/loginScreen', page: () => LoginScreen()),
-      ],
       initialBinding: Binding(),
       theme: ThemeData(
         fontFamily: 'Source Sans Pro',

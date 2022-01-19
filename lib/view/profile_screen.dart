@@ -95,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         ReusableTile(
                           tileTitle: 'Favorites',
-                          iconImage: 'assets/icon_images/favorites.PNG',
+                          iconImage: 'assets/icon_images/icon_favorites.png',
                           onTilePressed: () {
                             Get.to(FavoritesScreen());
                           },
@@ -121,8 +121,6 @@ class ProfileScreen extends StatelessWidget {
                           tileTitle: 'Log Out',
                           iconImage: 'assets/icon_images/Icon_Exit.png',
                           onTilePressed: () {
-                            Navigator.of(context)
-                                .popAndPushNamed('/loginScreen');
                             controller.logOut();
                           },
                         ),

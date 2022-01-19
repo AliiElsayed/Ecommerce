@@ -1,5 +1,5 @@
 import 'package:e_commerce/model/product_model.dart';
-import 'package:e_commerce/view/search_results_screen.dart';
+import 'package:e_commerce/view/search_screen.dart';
 import 'package:e_commerce/view_model/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -11,6 +11,7 @@ class SearchController extends GetxController {
   TextEditingController typedValueController = TextEditingController();
   List<String> allProductsNames = [];
   GlobalKey<FormState> searchFormKey = GlobalKey<FormState>();
+  bool searchIconPressed = false;
 
   @override
   void onInit() {
@@ -40,7 +41,9 @@ class SearchController extends GetxController {
   }
 
   onSearchPressed() {
+    searchFormKey.currentState.save();
     if (searchText != '') {
+      searchIconPressed = true;
       loading.value = true;
       searchResultList = Get.find<HomeController>()
           .ourAllProducts
@@ -48,7 +51,7 @@ class SearchController extends GetxController {
               .toLowerCase()
               .contains(removeTrailingWhiteSpace(searchText).toLowerCase()))
           .toList();
-      Get.to(SearchResultViewer());
+      Get.to(SearchScreen());
       loading.value = false;
     }
     update();

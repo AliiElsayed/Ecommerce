@@ -30,7 +30,4 @@ class ProfileController extends GetxController {
     loading.value = false;
     update();
   }
-
-
-
 }

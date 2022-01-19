@@ -22,21 +22,8 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     _user.bindStream(_auth.authStateChanges());
-  }
-
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
   }
 
   void googleSinInMethod() async {
@@ -50,7 +37,6 @@ class AuthController extends GetxController {
     await _auth.signInWithCredential(credential).then((userInfo) async {
       await saveUser(userInfo);
     });
-
     update();
   }
 
@@ -88,8 +74,6 @@ class AuthController extends GetxController {
     }
     update();
   }
-
-
 
   void signUpWithEmailPassword() async {
     try {
